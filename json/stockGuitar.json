@@ -1,0 +1,92 @@
+[
+    {
+        "id": "stockGuitar1",
+        "name": "Modern Eagle V",
+        "brand": "PRS",
+        "color": "Laguna Dragon's",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$11,540"
+    },
+    {
+        "id": "stockGuitar2",
+        "name": "Hexed",
+        "brand": "ESP",
+        "color": "Violeta",
+        "body": "tipo V",
+        "type": "Electrica",
+        "price": "$5,999"
+    },
+    {
+        "id": "stockGuitar3",
+        "name": "BB-600",
+        "brand": "ESP",
+        "color": "Gris oscuro",
+        "body": "les paul",
+        "type": "Electrica",
+        "price": "$1,599"
+    },
+    {
+        "id": "stockGuitar4",
+        "name": "jem350",
+        "brand": "Ibanez",
+        "color": "Negro",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$3,499"
+    },
+    {
+        "id": "stockGuitar5",
+        "name": "JS2GD",
+        "brand": "Ibanez",
+        "color": "oro",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$5,799"
+    },
+    {
+        "id": "stockGuitar6",
+        "name": "DJ Ashba",
+        "brand": "Schecter",
+        "color": "Marron esfumado negro",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$1,499"
+    },
+    {
+        "id": "stockGuitar7",
+        "name": "Telecaster pro 2",
+        "brand": "Fender",
+        "color": "negro esfumado azul",
+        "body": "Telecaster",
+        "type": "Electrica",
+        "price": "$1,699"
+    },
+    {
+        "id": "stockGuitar8",
+        "name": "stratocas pro 3",
+        "brand": "Fender",
+        "color": "Blanco con pickguard rojo",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$1,699"
+    },
+    {
+        "id": "stockGuitar9",
+        "name": "SL2Q",
+        "brand": "Jackson",
+        "color": "verde",
+        "body": "Stratocaster",
+        "type": "Electrica",
+        "price": "$4,399"
+    },
+    {
+        "id": "stockGuitar10",
+        "name": "V260FR",
+        "brand": "Washburn",
+        "color": "Negro y amarillo",
+        "body": "tipo V",
+        "type": "Electrica",
+        "price": "$1,519"
+    }
+]
