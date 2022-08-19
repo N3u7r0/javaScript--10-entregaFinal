@@ -35,7 +35,18 @@ if (usuarioStorage) {
     let legajoDeFooter = document.getElementById("legajoFooter");
     legajoDeFooter.innerHTML = usuarioStorage;
 } else {
-    ingresoLegajo = prompt("por favor, ingrese su legajo");
+
+    const { value: ingresoLegajo } = Swal.fire({
+        input: 'text',
+        inputLabel: 'Por favor, ingrese su legajo',
+        inputPlaceholder: 'Por ej. f14903 f14908 f14799 etc.'
+      })
+      
+      if (ingresoLegajo) {
+        Swal.fire(ingresoLegajo)
+      }
+
+    //ingresoLegajo = prompt("por favor, ingrese su legajo");
 //-------------------------------------------------------------------
     const buscadorDeLegajo = usuario.find(Colaborador => Colaborador.legajo === ingresoLegajo);//buscador de legajo.
 
