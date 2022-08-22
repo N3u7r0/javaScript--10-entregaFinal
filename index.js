@@ -2,8 +2,6 @@ console.log(document.body);
 console.log("Sistema iniciado, bienvenido a Hight-BackUp");
 //ingreso a la app.
 Swal.fire('Bienvenido a High-BackUp');
-
-
 class Colaborador {
     constructor(legajo, nombre, apellido) {
         this.legajo = legajo;
@@ -20,9 +18,6 @@ usuario.push(new Colaborador("f9092", "Leonardo", "Rosa",));
 usuario.push(new Colaborador("f3656", "Esteban", "Torre",));
 console.log("colaboradores activos:")
 console.log(usuario);
-
-
-
 //seleccion de usuario.
 let seleccionUsuario;
 let usuarioStorage = localStorage.getItem("seleccionUsuario");
@@ -96,13 +91,6 @@ fetch("./stock/stockCampera.json")
             <p>${campera.tipo}</p>
             `;
             itemCampera.append(li);
-            
         });
         console.log(camperas);
     });
-
-
-
-
-
-

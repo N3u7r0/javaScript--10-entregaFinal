@@ -1,15 +1,10 @@
 .swalRojo{
     color: red;
 }
-.button{
-    
-    color:red;
-}
 * {
     margin: 1px;
     padding: 0%;
     font-family: 'Bebas Neue', cursive;
-
 }
 
 main,
@@ -53,13 +48,4 @@ body {
     flex-direction: column;
     justify-content: center;
     border: solid 2px black;
-}
-
-/*testigo item*/
-#itemRed {
-    color: tomato;
-
-}
-#itemBlue {
-    color: blue;
 }
