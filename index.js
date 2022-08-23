@@ -66,7 +66,7 @@ fetch("./stock/stockBuzo.json")
         buzos.forEach(buzo => {
             const li = document.createElement("li");
             li.innerHTML = `
-                <h4>${buzo.marca}</h2>
+                <h4>${buzo.marca}</h4>
                 <p>${buzo.color}</p>
                 <p>${buzo.talle}</p>
                 <p>${buzo.precio}</p>
@@ -84,7 +84,7 @@ fetch("./stock/stockCampera.json")
         camperas.forEach(campera => {
             const li = document.createElement("li");
             li.innerHTML = `
-            <h4>${campera.marca}</h2>
+            <h4>${campera.marca}</h4>
             <p>${campera.color}</p>
             <p>${campera.talle}</p>
             <p>${campera.precio}</p>
@@ -94,3 +94,7 @@ fetch("./stock/stockCampera.json")
         });
         console.log(camperas);
     });
+
+    $("#boton").click(function() {
+        swal.fire("hola");
+    })
