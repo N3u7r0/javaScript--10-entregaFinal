@@ -16,6 +16,7 @@ usuario.push(new Colaborador("f14799", "Gabriel", "Teves",));
 usuario.push(new Colaborador("f75", "Ignacio", "Buera",));
 usuario.push(new Colaborador("f9092", "Leonardo", "Rosa",));
 usuario.push(new Colaborador("f3656", "Esteban", "Torre",));
+usuario.push(new Colaborador("f3823", "Mariano", "Palma",));
 console.log("colaboradores activos:")
 console.log(usuario);
 //seleccion de usuario.
@@ -39,7 +40,8 @@ let usuarioStorage = localStorage.getItem("seleccionUsuario");
                 f14799: "Teves(f14799)",
                 f9092: "Rosa(f9092)",
                 f3656: "Torre(f3656)",
-                f75: "Guera(f75)"
+                f75: "Guera(f75)",
+                f3823:"Palma(f3823)"
             }
         });
     //usuario ya ingresado 
@@ -96,5 +98,30 @@ fetch("./stock/stockCampera.json")
     });
 
     $("#boton").click(function() {
-        swal.fire("hola");
+        (async () => {
+            const inputOptions = new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve({
+                    'buzo': 'Buzo',
+                    'campera': 'Campera'
+                  })
+                }, 1000)
+              })
+              
+              const { value: nuevoItem } = await Swal.fire({
+                title: 'Seleccione el tipo de prenda:',
+                input: 'radio',
+                inputOptions: inputOptions,
+                inputValidator: (value) => {
+                  if (!value) {
+                    return 'a mariano le gusta el conejo arremangado jaja '
+                  }
+                }
+              })
+              
+              if (nuevoItem) {
+                Swal.fire({ html: `ingresaste un: ${nuevoItem}` })
+              }
+        })()
+        
     })
