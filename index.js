@@ -17,11 +17,8 @@ usuario.push(new Colaborador("f75", "Ignacio", "Buera",));
 usuario.push(new Colaborador("f9092", "Leonardo", "Rosa",));
 usuario.push(new Colaborador("f3656", "Esteban", "Torre",));
 usuario.push(new Colaborador("f3823", "Mariano", "Palma",));
-console.log("colaboradores activos:")
+console.log("colaboradores activos:");
 console.log(usuario);
-//seleccion de usuario.
-let seleccionUsuario;
-let usuarioStorage = localStorage.getItem("seleccionUsuario");
 (async () => {
     const { value: seleccionUsuario } =
         await swal.fire({
@@ -41,7 +38,7 @@ let usuarioStorage = localStorage.getItem("seleccionUsuario");
                 f9092: "Rosa(f9092)",
                 f3656: "Torre(f3656)",
                 f75: "Guera(f75)",
-                f3823:"Palma(f3823)"
+                f3823: "Palma(f3823)"
             }
         });
     //usuario ya ingresado 
@@ -52,13 +49,18 @@ let usuarioStorage = localStorage.getItem("seleccionUsuario");
         //footer.
         let buscadorNombre = buscadorDeLegajo.nombre;
         let buscadorApellido = buscadorDeLegajo.apellido;
-        let nombreDeFooter = document.getElementById("nombreFooter");
+        let buscadorlegajo = buscadorDeLegajo.legajo;
+        let nombreDeFooter = document.getElementById("nombreFooterHtml");
         nombreDeFooter.innerHTML = buscadorNombre;
-        let apellidoDeFooter = document.getElementById("apellidoFooter");
+        let apellidoDeFooter = document.getElementById("apellidoFooterHtml");
         apellidoDeFooter.innerHTML = buscadorApellido;
-        let legajoDeFooter = document.getElementById("legajoFooter");
-        legajoDeFooter.innerHTML = usuarioStorage;
+        let legajoDeFooter = document.getElementById("legajoFooterHtml");
+        legajoDeFooter.innerHTML = buscadorlegajo;
+        //sessionStorage pt1
+        console.log(buscadorDeLegajo);
+        sessionStorage.setItem("userStorage", buscadorDeLegajo.legajo) //exporta el valor en formato json.
     }
+
 })()
 //items.
 let itemBuzo = document.getElementById("listaStockBuzo");
@@ -97,31 +99,58 @@ fetch("./stock/stockCampera.json")
         console.log(camperas);
     });
 
-    $("#boton").click(function() {
-        (async () => {
-            const inputOptions = new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve({
+$("#boton").click(function () {
+    (async () => {
+        const inputOptions = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve({
                     'buzo': 'Buzo',
                     'campera': 'Campera'
-                  })
-                }, 1000)
-              })
-              
-              const { value: nuevoItem } = await Swal.fire({
-                title: 'Seleccione el tipo de prenda:',
-                input: 'radio',
-                inputOptions: inputOptions,
-                inputValidator: (value) => {
-                  if (!value) {
-                    return 'a mariano le gusta el conejo arremangado jaja '
-                  }
+                })
+            }, 1000)
+        })
+        const { value: nuevoItem } = await Swal.fire({
+            title: 'Seleccione el tipo de prenda:',
+            input: 'radio',
+            inputOptions: inputOptions,
+            inputValidator: (value) => {
+                if (!value) {
+                    return 'Seleccione una prenda'
                 }
-              })
-              
-              if (nuevoItem) {
-                Swal.fire({ html: `ingresaste un: ${nuevoItem}` })
-              }
-        })()
-        
-    })
+            }
+        })
+        if (nuevoItem) {
+            Swal.fire({ html: `seleccionaste: ${nuevoItem}` });
+
+
+            let selecUsuario = nuevoItem
+            if (selecUsuario === "buzo") {
+                let testigoNuevo = document.getElementById("testigo");//"testigo es la ID de <P> del header."
+                testigoNuevo.innerHTML = "Nuevo buzo ingresado";
+                let tipoNew = "Buzo";
+                let marcaNew = prompt("ingrese la marca:");
+                let colorNew = prompt("ingrese el color:");
+                let talleNew = prompt("ingrese el talle: -XS-S-M-L-X-XL-XXL-:");
+                let precioNew = prompt("ingrese el precio -sin el signo $-:");
+                let itemBuzo = [{"tipo":tipoNew}, {"marca":marcaNew}, {"color":colorNew}, {"talle":talleNew}, {"precio":precioNew}];
+                console.log("Nuevo Buzo");
+                console.log(itemBuzo);
+                
+            }
+            else if (selecUsuario === "campera") {
+                let testigoNuevo = document.getElementById("testigo");//"testigo es la ID de <P>"
+                testigoNuevo.innerHTML = "Nueva Campera ingresada";
+                let tipoNew = "Campera";
+                let marcaNew = prompt("ingrese la marca:");
+                let colorNew = prompt("ingrese el color:");
+                let talleNew = prompt("ingrese el talle: -XS-S-M-L-X-XL-XXL-:");
+                let precioNew = prompt("ingrese el precio -sin el signo $-:");
+                let itemCampera = [{"tipo":tipoNew}, {"marca":marcaNew}, {"color":colorNew}, {"talle":talleNew}, {"precio":precioNew}];
+                console.log("Nueva campera");
+                console.log(itemCampera);
+                
+            }
+
+        }
+    })()
+})
