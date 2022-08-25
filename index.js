@@ -20,6 +20,15 @@ usuario.push(new Colaborador("f3823", "Mariano", "Palma",));
 console.log("colaboradores activos:");
 console.log(usuario);
 
+let usuarioStorage;
+let candadoStorage = localStorage.getItem("usuarioStorage");
+if(candadoStorage){
+    usuarioStorage=candadoStorage;
+    Swal.fire({
+        title:"hola " + usuarioStorage,
+        icon:"warning"
+    })
+} else{
 //seleccion de usuario.
 (async () => {
     const { value: seleccionUsuario } =
@@ -60,9 +69,12 @@ console.log(usuario);
         legajoDeFooter.innerHTML = buscadorlegajo;
         //sessionStorage pt1
         console.log(buscadorDeLegajo);
-        sessionStorage.setItem("userStorage", buscadorDeLegajo.legajo) //exporta el valor en formato json.
+        usuarioStorage= buscadorDeLegajo.nombre;
+        localStorage.setItem("usuarioStorage", usuarioStorage);
     }
 })()
+}
+
 //botom nuevo item!!!.
 $("#boton").click(function () {
     (async () => {
