@@ -19,6 +19,8 @@ usuario.push(new Colaborador("f3656", "Esteban", "Torre",));
 usuario.push(new Colaborador("f3823", "Mariano", "Palma",));
 console.log("colaboradores activos:");
 console.log(usuario);
+
+//seleccion de usuario.
 (async () => {
     const { value: seleccionUsuario } =
         await swal.fire({
@@ -60,45 +62,8 @@ console.log(usuario);
         console.log(buscadorDeLegajo);
         sessionStorage.setItem("userStorage", buscadorDeLegajo.legajo) //exporta el valor en formato json.
     }
-
 })()
-//items.
-let itemBuzo = document.getElementById("listaStockBuzo");
-fetch("./stock/stockBuzo.json")
-    .then(respeustaBuzo => respeustaBuzo.json())
-    .then(buzos => {
-        buzos.forEach(buzo => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <h4>${buzo.marca}</h4>
-                <p>${buzo.color}</p>
-                <p>${buzo.talle}</p>
-                <p>${buzo.precio}</p>
-                <p>${buzo.tipo}</p>
-            `;
-            itemBuzo.append(li);
-        });
-        console.log("items totales");
-        console.log(buzos);
-    });
-let itemCampera = document.getElementById("listaStockCampera");
-fetch("./stock/stockCampera.json")
-    .then(respeustaCampera => respeustaCampera.json())
-    .then(camperas => {
-        camperas.forEach(campera => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-            <h4>${campera.marca}</h4>
-            <p>${campera.color}</p>
-            <p>${campera.talle}</p>
-            <p>${campera.precio}</p>
-            <p>${campera.tipo}</p>
-            `;
-            itemCampera.append(li);
-        });
-        console.log(camperas);
-    });
-
+//botom nuevo item!!!.
 $("#boton").click(function () {
     (async () => {
         const inputOptions = new Promise((resolve) => {
@@ -120,10 +85,8 @@ $("#boton").click(function () {
             }
         })
         if (nuevoItem) {
-            Swal.fire({ html: `seleccionaste: ${nuevoItem}` });
-
-
-            let selecUsuario = nuevoItem
+            Swal.fire({ html: `ingresaste un nuevo item: ${nuevoItem}` });
+            selecUsuario = nuevoItem;
             if (selecUsuario === "buzo") {
                 let testigoNuevo = document.getElementById("testigo");//"testigo es la ID de <P> del header."
                 testigoNuevo.innerHTML = "Nuevo buzo ingresado";
@@ -132,12 +95,13 @@ $("#boton").click(function () {
                 let colorNew = prompt("ingrese el color:");
                 let talleNew = prompt("ingrese el talle: -XS-S-M-L-X-XL-XXL-:");
                 let precioNew = prompt("ingrese el precio -sin el signo $-:");
-                let itemBuzo = [{"tipo":tipoNew}, {"marca":marcaNew}, {"color":colorNew}, {"talle":talleNew}, {"precio":precioNew}];
+                arrayBuzo.push(new Productobuzo(tipoNew, marcaNew, colorNew, talleNew, precioNew));
                 console.log("Nuevo Buzo");
-                console.log(itemBuzo);
-                
+                console.log(arrayBuzo);
             }
             else if (selecUsuario === "campera") {
+                Swal.fire({ html: `ingresaste un nuevo item: ${nuevoItem}` });
+                selecUsuario = nuevoItem;
                 let testigoNuevo = document.getElementById("testigo");//"testigo es la ID de <P>"
                 testigoNuevo.innerHTML = "Nueva Campera ingresada";
                 let tipoNew = "Campera";
@@ -145,12 +109,64 @@ $("#boton").click(function () {
                 let colorNew = prompt("ingrese el color:");
                 let talleNew = prompt("ingrese el talle: -XS-S-M-L-X-XL-XXL-:");
                 let precioNew = prompt("ingrese el precio -sin el signo $-:");
-                let itemCampera = [{"tipo":tipoNew}, {"marca":marcaNew}, {"color":colorNew}, {"talle":talleNew}, {"precio":precioNew}];
-                console.log("Nueva campera");
-                console.log(itemCampera);
-                
+                arrayCampera.push(new Productocampera(tipoNew, marcaNew, colorNew, talleNew, precioNew));
+                console.log("Nueva Campera");
+                console.log(arrayCampera);
             }
-
         }
     })()
 })
+//items.
+class Productobuzo {
+    constructor(tipo, marca, color, talle, precio) {
+        this.tipo = tipo;
+        this.marca = marca;
+        this.color = color;
+        this.talle = talle;
+        this.precio = precio;
+    }
+}
+const arrayBuzo = [];
+class Productocampera {
+    constructor(tipo, marca, color, talle, precio) {
+        this.tipo = tipo;
+        this.marca = marca;
+        this.color = color;
+        this.talle = talle;
+        this.precio = precio;
+    }
+}
+const arrayCampera = [];
+//listas de items DOM
+let itemBuzo = document.getElementById("listaStockBuzo");
+fetch("./stock/stockBuzo.json")
+    .then(Productobuzo => Productobuzo.json())
+    .then(buzos => {
+        buzos.forEach(buzo => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+                <h4>${buzo.marca}</h4>
+                <p>${buzo.color}</p>
+                <p>${buzo.talle}</p>
+                <p>${buzo.precio}</p>
+                <p>${buzo.tipo}</p>
+            `;
+            itemBuzo.append(li);
+        });
+    });
+let itemCampera = document.getElementById("listaStockCampera");
+fetch("./stock/stockCampera.json")
+    .then(Productocampera => Productocampera.json())
+    .then(camperas => {
+        camperas.forEach(campera => {
+            const li = document.createElement("li");
+            li.innerHTML = `
+            <h4>${campera.marca}</h4>
+            <p>${campera.color}</p>
+            <p>${campera.talle}</p>
+            <p>${campera.precio}</p>
+            <p>${campera.tipo}</p>
+            `;
+            itemCampera.append(li);
+        });
+    });
