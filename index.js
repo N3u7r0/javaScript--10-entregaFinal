@@ -22,57 +22,57 @@ console.log(usuario);
 
 let usuarioStorage;
 let candadoStorage = localStorage.getItem("usuarioStorage");
-if(candadoStorage){
-    usuarioStorage=candadoStorage;
+if (candadoStorage) {
+    usuarioStorage = candadoStorage;
     Swal.fire({
-        title:"hola " + usuarioStorage,
-        icon:"warning"
+        title: "hola " + usuarioStorage,
+        icon: "warning"
     })
-} else{
-//seleccion de usuario.
-(async () => {
-    const { value: seleccionUsuario } =
-        await swal.fire({
-            title: "Seleccione su usuario",
-            confirmButtonText: "Seleccionar",
-            icon: "info",
-            footer: '<span class= "swalRojo">Si su legajo no figura en al app, contacte a back office.</span>',
-            allowEscapeKey: false,
-            allowOutsideClick: false,
-            //inputs
-            input: "select",
-            inputPlaceholder: "Usuario",
-            inputValue: "seleccionUsuario ",
-            inputOptions: {
-                f14903: "Sabatini(f14903)",
-                f14799: "Teves(f14799)",
-                f9092: "Rosa(f9092)",
-                f3656: "Torre(f3656)",
-                f75: "Guera(f75)",
-                f3823: "Palma(f3823)"
-            }
-        });
-    //usuario ya ingresado 
-    if (seleccionUsuario) {
-        const buscadorDeLegajo = usuario.find(Colaborador => Colaborador.legajo === seleccionUsuario);//buscador de legajo.
-        console.log("ingreso el colaborador " + buscadorDeLegajo.nombre + " " + buscadorDeLegajo.apellido);
-        swal.fire("Bienvenido " + buscadorDeLegajo.nombre + " " + buscadorDeLegajo.apellido);
-        //footer.
-        let buscadorNombre = buscadorDeLegajo.nombre;
-        let buscadorApellido = buscadorDeLegajo.apellido;
-        let buscadorlegajo = buscadorDeLegajo.legajo;
-        let nombreDeFooter = document.getElementById("nombreFooterHtml");
-        nombreDeFooter.innerHTML = buscadorNombre;
-        let apellidoDeFooter = document.getElementById("apellidoFooterHtml");
-        apellidoDeFooter.innerHTML = buscadorApellido;
-        let legajoDeFooter = document.getElementById("legajoFooterHtml");
-        legajoDeFooter.innerHTML = buscadorlegajo;
-        //sessionStorage pt1
-        console.log(buscadorDeLegajo);
-        usuarioStorage= buscadorDeLegajo.nombre;
-        localStorage.setItem("usuarioStorage", usuarioStorage);
-    }
-})()
+} else {
+    //seleccion de usuario.
+    (async () => {
+        const { value: seleccionUsuario } =
+            await swal.fire({
+                title: "Seleccione su usuario",
+                confirmButtonText: "Seleccionar",
+                icon: "info",
+                footer: '<span class= "swalRojo">Si su legajo no figura en al app, contacte a back office.</span>',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                //inputs
+                input: "select",
+                inputPlaceholder: "Usuario",
+                inputValue: "seleccionUsuario ",
+                inputOptions: {
+                    f14903: "Sabatini(f14903)",
+                    f14799: "Teves(f14799)",
+                    f9092: "Rosa(f9092)",
+                    f3656: "Torre(f3656)",
+                    f75: "Guera(f75)",
+                    f3823: "Palma(f3823)"
+                }
+            });
+        //usuario ya ingresado 
+        if (seleccionUsuario) {
+            const buscadorDeLegajo = usuario.find(Colaborador => Colaborador.legajo === seleccionUsuario);//buscador de legajo.
+            console.log("ingreso el colaborador " + buscadorDeLegajo.nombre + " " + buscadorDeLegajo.apellido);
+            swal.fire("Bienvenido " + buscadorDeLegajo.nombre + " " + buscadorDeLegajo.apellido);
+            //footer.
+            let buscadorNombre = buscadorDeLegajo.nombre;
+            let buscadorApellido = buscadorDeLegajo.apellido;
+            let buscadorlegajo = buscadorDeLegajo.legajo;
+            let nombreDeFooter = document.getElementById("nombreFooterHtml");
+            nombreDeFooter.innerHTML = buscadorNombre;
+            let apellidoDeFooter = document.getElementById("apellidoFooterHtml");
+            apellidoDeFooter.innerHTML = buscadorApellido;
+            let legajoDeFooter = document.getElementById("legajoFooterHtml");
+            legajoDeFooter.innerHTML = buscadorlegajo;
+            //sessionStorage pt1
+            console.log(buscadorDeLegajo);
+            usuarioStorage = buscadorDeLegajo.nombre;
+            localStorage.setItem("usuarioStorage", usuarioStorage);
+        }
+    })()
 }
 
 //botom nuevo item!!!.
@@ -111,17 +111,17 @@ $("#boton").click(function () {
                 console.log("Nuevo Buzo");
                 console.log(arrayBuzo);
                 let slotBuzo = document.createElement("li");
-                for(propiedades of arrayBuzo){
-                    slotBuzo.innerHTML= `
-                    <h4>${arrayBuzo.marca}</h4>
-                    <p>${arrayBuzo.color}</p>
-                    <p>${arrayBuzo.talle}</p>
-                    <p>${arrayBuzo.precio}</p>
-                    <p>${arrayBuzo.tipo}</p>` ;//aca entra la variable
+                for (propiedades of arrayBuzo) {
+                    slotBuzo.innerHTML = `
+                    <h4>${propiedades.marca}</h4>
+                    <p>${propiedades.color}</p>
+                    <p>${propiedades.talle}</p>
+                    <p>${propiedades.precio}</p>
+                    <p>${propiedades.tipo}</p>`;//aca entra la variable
                 };
                 itemBuzo.append(slotBuzo);
             }
-            
+
             else if (selecUsuario === "campera") {
                 Swal.fire({ html: `ingresaste un nuevo item: ${nuevoItem}` });
                 selecUsuario = nuevoItem;
@@ -136,17 +136,17 @@ $("#boton").click(function () {
                 console.log("Nueva Campera");
                 console.log(arrayCampera);
                 let slotCampera = document.createElement("li");
-                for(propiedades of arrayCampera){
-                    slotCampera.innerHTML= `
-                    <h4>${arrayCampera.marca}</h4>
-                    <p>${arrayCampera.color}</p>
-                    <p>${arrayCampera.talle}</p>
-                    <p>${arrayCampera.precio}</p>
-                    <p>${arrayCampera.tipo}</p>` ;//aca entra la variable
+                for (propiedades of arrayCampera) {
+                    slotCampera.innerHTML = `
+                    <h4>${propiedades.marca}</h4>
+                    <p>${propiedades.color}</p>
+                    <p>${propiedades.talle}</p>
+                    <p>${propiedades.precio}</p>
+                    <p>${propiedades.tipo}</p>`;//aca entra la variable
                 };
                 itemCampera.append(slotCampera);
             }
-            
+
         }
     })()
 })
@@ -204,6 +204,3 @@ fetch("./stock/stockCampera.json")
             itemCampera.append(li);
         });
     });
-    
-    console.log(arrayBuzo);
-    console.log(arrayCampera);
