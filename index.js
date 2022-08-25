@@ -110,7 +110,18 @@ $("#boton").click(function () {
                 arrayBuzo.push(new Productobuzo(tipoNew, marcaNew, colorNew, talleNew, precioNew));
                 console.log("Nuevo Buzo");
                 console.log(arrayBuzo);
+                let slotBuzo = document.createElement("li");
+                for(propiedades of arrayBuzo){
+                    slotBuzo.innerHTML= `
+                    <h4>${arrayBuzo.marca}</h4>
+                    <p>${arrayBuzo.color}</p>
+                    <p>${arrayBuzo.talle}</p>
+                    <p>${arrayBuzo.precio}</p>
+                    <p>${arrayBuzo.tipo}</p>` ;//aca entra la variable
+                };
+                itemBuzo.append(slotBuzo);
             }
+            
             else if (selecUsuario === "campera") {
                 Swal.fire({ html: `ingresaste un nuevo item: ${nuevoItem}` });
                 selecUsuario = nuevoItem;
@@ -124,7 +135,18 @@ $("#boton").click(function () {
                 arrayCampera.push(new Productocampera(tipoNew, marcaNew, colorNew, talleNew, precioNew));
                 console.log("Nueva Campera");
                 console.log(arrayCampera);
+                let slotCampera = document.createElement("li");
+                for(propiedades of arrayCampera){
+                    slotCampera.innerHTML= `
+                    <h4>${arrayCampera.marca}</h4>
+                    <p>${arrayCampera.color}</p>
+                    <p>${arrayCampera.talle}</p>
+                    <p>${arrayCampera.precio}</p>
+                    <p>${arrayCampera.tipo}</p>` ;//aca entra la variable
+                };
+                itemCampera.append(slotCampera);
             }
+            
         }
     })()
 })
@@ -182,3 +204,6 @@ fetch("./stock/stockCampera.json")
             itemCampera.append(li);
         });
     });
+    
+    console.log(arrayBuzo);
+    console.log(arrayCampera);
